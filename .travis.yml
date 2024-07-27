@@ -14,3 +14,10 @@ after_success:
   - docker build -t nersesyan/multi-nginx ./nginx
   - docker build -t nersesyan/multi-server ./server
   - docker build -t nersesyan/multi-worker ./worker
+#  Login docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Push images to docker hub
+  - docker push nersesyan/multi-client
+  - docker push nersesyan/multi-nginx
+  - docker push nersesyan/multi-server
+  - docker push nersesyan/multi-worker
